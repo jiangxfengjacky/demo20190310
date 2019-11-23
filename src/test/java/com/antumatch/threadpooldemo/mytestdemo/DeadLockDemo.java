@@ -25,15 +25,12 @@ public class DeadLockDemo {
                 }
             }
         });
-        Thread threadB = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread threadB = new Thread(()-> {
                 synchronized (resource_b) {
                     System.out.println("get resource b");
                     synchronized (resource_a) {
                         System.out.println("get resource a");
                     }
-                }
             }
         });
         threadA.start();
